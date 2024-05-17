@@ -1,0 +1,67 @@
+<div class="table table-bordered  table-hover ">
+    @if(status){
+    <h2>Department List</h2>
+    <div class="container border ">
+        <!-- <form class="form form-control"> -->
+        <label for="std.id" class=" form-control">ID
+        <input type="number" class="form form-control" [(ngModel)]="dept.id"/></label>
+        <label for="std.name " class="form-control">Name
+        <input type="text" class="form-control " [(ngModel)]="dept.name"/>
+        </label>
+        <label for="std.age" class="form-control">Age
+        <input type="number" class="form-control" [(ngModel)]="dept.description"/>
+        </label>
+      
+     
+    <!-- </form> -->
+    </div>
+    <div class="form-control form">
+        <button class="btn btn-success  pe-4  text-center " (click)="addDept()">Add</button>
+    </div>
+    }@else{ 
+        <h3>
+            <a class="btn btn-dark  " (click)="back()">Back to Add</a>
+        </h3>
+        <h2>Edit Department </h2>
+
+        <div class="container border ">
+            <label for="std.id" class=" form-control">ID
+            <input type="number" class="form form-control" [(ngModel)]="EditDept.id" disabled /></label>
+            <label for="std.name " class="form-control">Name
+            <input type="text" class="form-control " [(ngModel)]="EditDept.name"/>
+            </label>
+            <label for="std.age" class="form-control">Age
+            <input type="text" class="form-control" [(ngModel)]="EditDept.description"/>
+            </label>
+           
+        </div>
+        <div class="form-control form">
+            <button class="btn btn-success  pe-4  text-center " (click)="updateStudent()">Update</button>
+        </div>
+
+    }
+    <table class="table table-bordered  table-hover ">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dept of departments">
+                <td>{{dept.id}}</td>
+                <td>{{dept.name}}</td>
+                <td>{{dept.description}}</td>
+                <td>
+                    <a class="btn btn-secondary  p-2 m-2" (click)="editDept(dept.id)">Edit</a>
+                    <a class="btn btn-danger p-2 m-2" (click)="deleteDept(dept.id)">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+
+</div>

@@ -1,0 +1,20 @@
+<h2>Department List</h2>
+<div class="container border d-flex  flex-column  ">
+    <!-- <form class="form form-control"> -->
+    <label for="std.id" class=" p-3">ID
+    <input type="number" class="form form-control" [(ngModel)]="dept.id"/></label>
+    <label for="std.name " class="p-3">Name
+    <input type="text" class="form-control " [(ngModel)]="dept.name"/>
+    </label>
+    <label for="std.description" class="p-3">description
+    <input type="text" class="form-control" [(ngModel)]="dept.description"/>
+    </label>
+  
+ 
+<!-- </form> -->
+</div>
+<div class="form-control form">
+    <button class="btn btn-success  pe-4  text-center " (click)="addDept()">Add</button>
+    <button class="btn btn-secondary" [routerLink]="['/deptList']">Back</button>
+
+</div>

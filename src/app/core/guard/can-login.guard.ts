@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { CanActivateFn } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { AccountService } from '../account.service';
 
 export const canLoginGuard: CanActivateFn = (route, state) => {
@@ -7,6 +7,8 @@ export const canLoginGuard: CanActivateFn = (route, state) => {
   if (accountService.isLoggedIn) {
     return true;
   }
-   
+  
+  inject(Router).navigate(['/denied']);
+
   return false;
 };

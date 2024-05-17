@@ -16,7 +16,7 @@ export class DepartmentEditComponent {
     id:number = 0;
     constructor( public deptService:DeptServiceService,private route: ActivatedRoute, private router : Router) { }
     ngOnInit(): void {
-        console.log(this.route.snapshot.params["id"])
+        // console.log(this.route.snapshot.params["id"])
         this.route.params.subscribe(params => {
             this.id = params['id'];
         });

@@ -1,1 +1,18 @@
-<p>student-add works!</p>
+<div class="container p-4  ">
+<h2>Add Student</h2>
+    <label for="std.id" class=" form-control">ID
+    <input type="text" class="form form-control" [(ngModel)]="std.id"/></label>
+    <label for="std.name " class="form-control">Name
+    <input type="text" class="form-control " [(ngModel)]="std.name"/>
+    </label>
+    <label for="std.age" class="form-control">Age
+    <input type="text" class="form-control" [(ngModel)]="std.age"/>
+    </label>
+    <label for="std.email" class="form-control">Email
+    <input type="text" class="form-control"  [(ngModel)]="std.email"/>
+    </label>
+    <div class="form-control form">
+        <button class="btn btn-success  pe-4  text-center " (click)="addStudent()">Add</button>
+    </div>
+<!-- </form> -->
+</div>

@@ -1,1 +1,29 @@
-<p>student-edit works!</p>
+<div class="container ">
+   
+    <h2>Edit Student </h2>
+
+    <div class="container border ">
+        @if(EditStd){
+        <label for="std.id" class=" form-control">ID
+        <input type="number" class="form form-control" [(ngModel)]="EditStd.id" disabled /></label>
+        <label for="std.name " class="form-control">Name
+        <input type="text" class="form-control " [(ngModel)]="EditStd.name"/>
+        </label>
+        <label for="std.age" class="form-control">Age
+        <input type="number" class="form-control" [(ngModel)]="EditStd.age"/>
+        </label>
+        <label for="std.email" class="form-control">Email
+        <input type="text" class="form-control" [(ngModel)]="EditStd.email"/>
+        </label>
+    }@else {
+        <h2>No Matched Results</h2>
+    }
+    </div>
+    <div class="form-control form">
+        <button class="btn btn-success  pe-4  text-center " (click)="updateStudent()">Update</button>
+    </div>
+    <h3>
+        <a class="btn btn-dark"[routerLink]="['/student/list']" >Back to Add</a>
+    </h3>
+
+</div>

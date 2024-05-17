@@ -5,8 +5,6 @@ export class Student {
          public name: string,
          public age: number,
          public email: string,
-         public phone: string,
-         public address: string,
          public Dept:string
         )
     {}

@@ -1,1 +1,27 @@
-<p>student-details works!</p>
+<div class="alet alert-danger row  container ">
+    <div class="col-8">
+        <div class="alert alert-danger  ">
+            <h2>Student Details</h2>
+            @if(std){
+                     <label for="std.id" class=" form-control alert alert-dark    ">ID
+                    <input type="number" class="form form-control " [(ngModel)]="std.id" readonly /></label>
+                    <label for="std.name " class="form-control alert alert-dark ">Name
+                    <input type="text" class="form-control " [(ngModel)]="std.name" readonly/>
+                    </label>
+                    <label for="std.age" class="form-control alert alert-dark ">Age
+                    <input type="number" class="form-control" [(ngModel)]="std.age" readonly/>
+                    </label>
+                    <label for="std.email" class="form-control alert alert-dark ">Email
+                    <input type="text" class="form-control" [(ngModel)]="std.email" readonly/>
+                    </label>        
+
+            }@else {
+                <h2>No Matching Data</h2>
+            }
+            <a class="btn btn-dark " routerLink="student/list">Back</a>
+           
+        </div>
+    </div>
+    
+
+</div>

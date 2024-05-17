@@ -1,1 +1,29 @@
-<p>student-list works!</p>
+<div class=" ">
+    <h2>Student List</h2>
+    <table class="table table-bordered  table-hover ">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody bordered>
+            @for (student of students; track student.id) {
+            <tr>
+                <td>{{student.id}}</td>
+                <td>{{student.name}}</td>
+                <td>{{student.age}}</td>
+                <td>{{student.email}}</td>
+                <td>
+                    <button class="btn btn-secondary  p-2 m-2" routerLink = "/student/edit/{{student.id}}">Edit</button>
+                    <a class=" btn btn-danger p-2 m-2 " (click)="deleteStudent(student.id)">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>

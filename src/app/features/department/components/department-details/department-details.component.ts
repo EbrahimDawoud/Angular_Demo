@@ -4,11 +4,20 @@ import { DeptServiceService } from '../../services/dept-service.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BASE_URL } from '../../../../core/auth/base-url.token';
+import { GenericSerService } from '../../../../shared/services/generic-ser.service';
 
 @Component({
   selector: 'app-department-details',
   standalone: true,
   imports: [RouterModule, RouterLink],
+  providers: [
+    {
+      provide: BASE_URL,
+      useValue: 'https://localhost:7041/api/Dept/' 
+    },
+    GenericSerService
+  ],
   templateUrl: './department-details.component.html',
   styleUrl: './department-details.component.css'
 })
@@ -17,7 +26,7 @@ export class DepartmentDetailsComponent implements OnDestroy {
   sub:Subscription|null = null;
   constructor( 
     private deptService: DeptServiceService,
-    private route: ActivatedRoute // Inject the ActivatedRoute module
+    private route: ActivatedRoute 
   ) {}
   ngOnDestroy(): void {
     this.sub?.unsubscribe();

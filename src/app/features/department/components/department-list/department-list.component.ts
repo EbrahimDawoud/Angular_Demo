@@ -3,24 +3,37 @@ import { Component } from '@angular/core';
 import { DeptServiceService } from '../../services/dept-service.service';
 import { Department } from '../../models/Department';
 import { Router, RouterModule } from '@angular/router';
+import { BASE_URL } from '../../../../core/auth/base-url.token';
+import { GenericSerService } from '../../../../shared/services/generic-ser.service';
+import { DeptDto } from '../../models/Dept';
 
 @Component({
   selector: 'app-department-list',
   standalone: true,
   imports: [CommonModule, RouterModule],
+  providers: [
+    {
+      provide: BASE_URL,
+      useValue: 'https://localhost:7041/api/Dept/' 
+    },
+    GenericSerService
+  ],
   templateUrl: './department-list.component.html',
   styleUrl: './department-list.component.css'
 })
 export class DepartmentListComponent {
   
-  departments:Department[] = [];
+  departments:DeptDto[] = [];
 
   constructor(
-     private deptService: DeptServiceService,
-     public router: Router
+     public router: Router,
+     public genSer: GenericSerService<DeptDto>
   ) { }
   ngOnInit(): void {
-    this.departments = this.deptService.load();
+     this.genSer.getAll().subscribe(d=>{
+      this.departments = d;
+     })
+     this.genSer.getById(10).subscribe(d=>{console.log(d)})
   }
   Add(){
     this.router.navigate(['deptList/add']);
@@ -28,8 +41,7 @@ export class DepartmentListComponent {
   deleteDept(id:number){
     if(confirm('Are you sure you want to delete this department?'))
     {
-      this.deptService.delete(id);
-      this.departments = this.deptService.load();
+      this.genSer.delete(id);
     }
     
   }

@@ -1,26 +1,26 @@
-
-<button class="btn btn-success  " (click)="Add()">Add Department</button>
-<table class="table table-bordered  table-hover mt-4">
-    <thead>
+<button class="btn btn-success" (click)="Add()">Add Department</button>
+<table class="table table-bordered table-hover mt-4">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (dept of departments; track $index) {
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let dept of departments" >
-            <td>{{dept.id}}</td>
-            <td>{{dept.name}}</td>
-            <td>{{dept.description}}</td>
-            <td> 
-                <a class="btn btn-secondary  p-2 m-2" routerLink="/deptList/details/{{dept.id}}">Details</a>
-                <a class="btn btn-primary  p-2 m-2" routerLink="/deptEdit/{{dept.id}}">Edit</a>
-                <a class="btn btn-danger p-2 m-2" (click)="deleteDept(dept.id)">Delete</a>
-
+            <td>{{dept.dept_Id}}</td>
+            <td>{{ dept.dept_Name }}</td>
+            <td>{{ dept.noofStudents }}</td>
+            <td>
+            <a class="btn btn-secondary p-2 m-2" [routerLink]="['/deptList/details', dept.dept_Id]">Details</a>
+            <a class="btn btn-primary p-2 m-2" [routerLink]="['/deptEdit', dept.dept_Id]">Edit</a> 
+             <a class="btn btn-danger p-2 m-2" (click)="deleteDept(dept.dept_Id)">Delete</a>
             </td>
         </tr>
-    </tbody>
+    }
+  </tbody>
 </table>
 <router-outlet></router-outlet>

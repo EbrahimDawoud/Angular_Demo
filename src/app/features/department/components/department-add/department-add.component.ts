@@ -3,50 +3,61 @@ import { Department } from '../../models/Department';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { DeptServiceService } from '../../services/dept-service.service';
+import { GenericSerService } from '../../../../shared/services/generic-ser.service';
+import { DeptDto } from '../../models/Dept';
 
 @Component({
   selector: 'app-department-add',
   standalone: true,
   imports: [FormsModule, RouterModule],
+  providers:[
+    GenericSerService
+  ],
   templateUrl: './department-add.component.html',
   styleUrl: './department-add.component.css'
 })
 export class DepartmentAddComponent {
-  dept:Department = {id:0,name:'', description:''};
+  dept:DeptDto = {dept_Id:0,dept_Name:'', noofStudents:0};
   
   constructor(
-    public deptService: DeptServiceService,
-    public router: Router) {}
+    // public deptService: DeptServiceService,
+    public router: Router,
+    private genSer:GenericSerService<DeptDto>
+  ) {}
     
   addDept(){
     
-    if(this.dept.name.trim()=='' || this.dept.description.trim()=='' )
+    if(this.dept.dept_Name.trim()=='' )
       {
         alert("Please fill all fields");
         return;
       }
       else{
-        if(this.dept.id<=0){
+        if(this.dept.dept_Id<=0){
           alert("Please enter a valid id");
           return;
         }
-        if(this.deptService.getById(this.dept.id)!=null)
-        {
-          alert("This id already exists");
-          return;
+        try{
+        this.genSer.getById(this.dept.dept_Id).subscribe(d=>{
+          if(d!=null)
+            {
+              alert("This id already exists");
+              return;
+            }       
+          })
         }
-        if(this.dept.name.trim().length<3)
+        catch(e){
+          console.log(e)
+        }
+        if(this.dept.dept_Name.trim().length<3)
         {
           alert("Please enter a valid name with at least 3 characters");
           return;
         }
-        if(this.dept.description.trim().length<10)
-        {
-          alert("Please enter a valid description with at least 10 characters");
-          return;
-        }
+       
+        this.genSer.add(this.dept).subscribe(d=>console.log(d))
+
   
-      this.deptService.add({...this.dept});
       this.router.navigate(['deptList']);
         
       }

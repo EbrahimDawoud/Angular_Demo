@@ -9,19 +9,18 @@ export class GenericSerService<T> {
   constructor(public http: HttpClient, @Inject(BASE_URL) private baseUrl: string) { }
 
   getAll() {
-    console.log(this.baseUrl);
-    return this.http.get<T[]>(this.baseUrl);
+    console.log(this.baseUrl);    return this.http.get<T[]>(this.baseUrl);
   }
 
   getById(id: number) {
-    
+
     return this.http.get<T>(`${this.baseUrl}${id}`);
   }
   add(obj: T) {
     return this.http.post<T>(this.baseUrl, obj);
   }
-  update(obj: T) {
-    return this.http.put<T>(this.baseUrl, obj);
+  update(obj: T, id:number) {
+    return this.http.put<T>(`${this.baseUrl}${id}`, obj);
   }
   delete(id: number) {
     return this.http.delete<T>(`${this.baseUrl}${id}`);

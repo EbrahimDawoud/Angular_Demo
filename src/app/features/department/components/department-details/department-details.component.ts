@@ -1,11 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Department } from '../../models/Department';
-import { DeptServiceService } from '../../services/dept-service.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BASE_URL } from '../../../../core/auth/base-url.token';
 import { GenericSerService } from '../../../../shared/services/generic-ser.service';
+import { DeptDto } from '../../models/Dept';
 
 @Component({
   selector: 'app-department-details',
@@ -25,14 +24,14 @@ export class DepartmentDetailsComponent implements OnDestroy {
 
   sub:Subscription|null = null;
   constructor( 
-    private deptService: DeptServiceService,
+    private genSer: GenericSerService<DeptDto>,
     private route: ActivatedRoute 
   ) {}
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }
 
-  deprtment:Department = { id: 0, name: '', description: ''};
+  deprtment:DeptDto|null =null;
   id:number = 0;
   testId: string="";
   ngOnInit(): void {
@@ -40,7 +39,7 @@ export class DepartmentDetailsComponent implements OnDestroy {
     // console.log(this.id);
     this.sub=this.route.params.subscribe(params => {
   
-      this.deprtment = this.deptService.getById(params['id']) || { id: 0, name: '', description: ''};
+      this.genSer.getById(params['id']).subscribe(d=>{this.deprtment= d})
 
     });
   }

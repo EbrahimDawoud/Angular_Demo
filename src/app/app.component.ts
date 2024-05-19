@@ -9,18 +9,14 @@ import { DepartmentComponent } from './features/components/department/department
 import { PowerPipe } from './shared/pipes/power.pipe';
 import { HomeComponent } from './core/home/home.component';
 import { BASE_URL } from './core/auth/base-url.token';
-import { BASE_URL_WITH_DEPT } from './core/auth/additional.token';
+import { environment } from '../environments/environment.development';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
   providers: [
-    { provide: BASE_URL, useValue: 'https://localhost:7041/api/' } ,
-    {
-      provide: BASE_URL_WITH_DEPT,
-      useFactory: appendDeptToBaseUrl, // Factory function to append "dept/"
-      deps: [BASE_URL]
-    }
+    { provide: BASE_URL, useValue: environment.baseUrl } ,
 
   ],
   imports: [RouterOutlet, HeaderComponent, FooterComponent, StudentComponent, CommonModule, FormsModule, DepartmentComponent, PowerPipe ,HomeComponent],
@@ -29,7 +25,4 @@ import { BASE_URL_WITH_DEPT } from './core/auth/additional.token';
 })
 export class AppComponent {
 
-}
-export function appendDeptToBaseUrl(baseUrl: string): string {
-  return `${baseUrl}dept/`;
 }

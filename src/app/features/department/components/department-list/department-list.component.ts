@@ -1,35 +1,43 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { DeptServiceService } from '../../services/dept-service.service';
 import { Department } from '../../models/Department';
 import { Router, RouterModule } from '@angular/router';
 import { BASE_URL } from '../../../../core/auth/base-url.token';
 import { GenericSerService } from '../../../../shared/services/generic-ser.service';
 import { DeptDto } from '../../models/Dept';
-
+export function createDeptUrl(baseUrl: string): string {
+  return `${baseUrl}dept/`;
+}
 @Component({
   selector: 'app-department-list',
   standalone: true,
   imports: [CommonModule, RouterModule],
   providers: [
     {
-      provide: BASE_URL,
-      useValue: 'https://localhost:7041/api/Dept/' 
+      provide: 'DEPT_URL',
+      useFactory: createDeptUrl,
+      deps: [BASE_URL]
     },
-    GenericSerService
+    {
+      provide: GenericSerService,
+      useClass: GenericSerService
+    }
   ],
   templateUrl: './department-list.component.html',
   styleUrl: './department-list.component.css'
 })
+
 export class DepartmentListComponent {
   
   departments:DeptDto[] = [];
-
   constructor(
      public router: Router,
+     @Inject('DEPT_URL') private deptUrl: string,
      public genSer: GenericSerService<DeptDto>
   ) { }
   ngOnInit(): void {
+    console.log(this.deptUrl)
      this.genSer.getAll().subscribe(d=>{
       this.departments = d;
      })
@@ -41,7 +49,7 @@ export class DepartmentListComponent {
   deleteDept(id:number){
     if(confirm('Are you sure you want to delete this department?'))
     {
-      this.genSer.delete(id);
+      this.genSer.delete(id).subscribe(d=>console.log(d))
     }
     
   }

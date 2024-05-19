@@ -8,15 +8,15 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="id">ID</label>
-                        <input type="text" class="form-control" id="id" name="id" value="{{deprtment.id}}" readonly>
+                        <input type="text" class="form-control" id="id" name="id" value="{{deprtment?.dept_Id}}" readonly>
                     </div>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" value="{{deprtment.name}}" readonly>
+                        <input type="text" class="form-control" id="name" name="name" value="{{deprtment?.dept_Name}}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <input type="text" class="form-control" id="description" name="description" value="{{deprtment.description}}" readonly>
+                        <label for="description">noofStudents</label>
+                        <input type="text" class="form-control" id="description" name="description" value="{{deprtment?.noofStudents}}" readonly>
                     </div>
 
                     <a class="btn btn-secondary mt-2" routerLink="/deptList">Back</a>

@@ -15,6 +15,7 @@ export class HeaderComponent {
   constructor(public accService:AccountService,private router :Router) { }
   logout(){
     this.accService.isLoggedIn = false;
+    localStorage.removeItem("token");
     this.router.navigateByUrl('/login');
 
   }

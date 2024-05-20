@@ -5,14 +5,16 @@ import { Router, RouterModule } from '@angular/router';
 import { DeptServiceService } from '../../services/dept-service.service';
 import { GenericSerService } from '../../../../shared/services/generic-ser.service';
 import { DeptDto } from '../../models/Dept';
+import { BASE_URL } from '../../../../core/auth/base-url.token';
 
 @Component({
   selector: 'app-department-add',
   standalone: true,
   imports: [FormsModule, RouterModule],
-  providers:[
+  providers: [
+    { provide: BASE_URL, useValue: 'dept' },
     GenericSerService
-  ],
+   ],
   templateUrl: './department-add.component.html',
   styleUrl: './department-add.component.css'
 })

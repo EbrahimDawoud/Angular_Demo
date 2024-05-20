@@ -13,7 +13,7 @@ import { DeptDto } from '../../models/Dept';
   providers: [
     {
       provide: BASE_URL,
-      useValue: 'https://localhost:7041/api/Dept/' 
+      useValue: 'Dept' 
     },
     GenericSerService
   ],

@@ -6,23 +6,14 @@ import { Router, RouterModule } from '@angular/router';
 import { BASE_URL } from '../../../../core/auth/base-url.token';
 import { GenericSerService } from '../../../../shared/services/generic-ser.service';
 import { DeptDto } from '../../models/Dept';
-export function createDeptUrl(baseUrl: string): string {
-  return `${baseUrl}dept/`;
-}
+
 @Component({
   selector: 'app-department-list',
   standalone: true,
   imports: [CommonModule, RouterModule],
   providers: [
-    {
-      provide: 'DEPT_URL',
-      useFactory: createDeptUrl,
-      deps: [BASE_URL]
-    },
-    {
-      provide: GenericSerService,
-      useClass: GenericSerService
-    }
+   { provide: BASE_URL, useValue: 'dept' },
+   GenericSerService
   ],
   templateUrl: './department-list.component.html',
   styleUrl: './department-list.component.css'
@@ -33,11 +24,9 @@ export class DepartmentListComponent {
   departments:DeptDto[] = [];
   constructor(
      public router: Router,
-     @Inject('DEPT_URL') private deptUrl: string,
      public genSer: GenericSerService<DeptDto>
   ) { }
   ngOnInit(): void {
-    console.log(this.deptUrl)
      this.genSer.getAll().subscribe(d=>{
       this.departments = d;
      })

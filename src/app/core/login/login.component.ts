@@ -18,8 +18,8 @@ export class LoginComponent {
   constructor(public accService:AccountService) { }
     login()
       {
-        console.log(this.user)
-        this.errMsg=(this.accService.login(this.user)?"":"Login Failed! UserName or Password is wrong");
+        this.accService.login(this.user);
+        this.errMsg=(localStorage.getItem("token"))?"":"Login Failed! UserName or Password is wrong";
       }
   }
   

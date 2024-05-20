@@ -6,20 +6,20 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Age</th>
-                <th>Email</th>
+                <th>deptName</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody bordered>
-            @for (student of students; track student.id) {
+            @for (student of students; track student.st_Id) {
             <tr>
-                <td>{{student.id}}</td>
+                <td>{{student.st_Id}}</td>
                 <td>{{student.name}}</td>
                 <td>{{student.age}}</td>
-                <td>{{student.email}}</td>
+                <td>{{student.deptName}}</td>
                 <td>
-                    <button class="btn btn-secondary  p-2 m-2" routerLink = "/student/edit/{{student.id}}">Edit</button>
-                    <a class=" btn btn-danger p-2 m-2 " (click)="deleteStudent(student.id)">Delete</a>
+                    <button class="btn btn-secondary  p-2 m-2" routerLink = "/student/edit/{{student.st_Id}}">Edit</button>
+                    <!-- <a class=" btn btn-danger p-2 m-2 " (click)="deleteStudent(student.id)">Delete</a> -->
                 </td>
             </tr>
         }

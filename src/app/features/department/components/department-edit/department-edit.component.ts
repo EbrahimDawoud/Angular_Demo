@@ -10,9 +10,10 @@ import { DeptDto } from '../../models/Dept';
   selector: 'app-department-edit',
   standalone: true,
   imports: [FormsModule, RouterModule],
-  providers:[
+  providers: [
+    { provide: BASE_URL, useValue: 'dept' },
     GenericSerService
-  ],
+   ],
   templateUrl: './department-edit.component.html',
   styleUrl: './department-edit.component.css'
 })
@@ -22,7 +23,6 @@ export class DepartmentEditComponent {
     id:number = 0;
     constructor( public deptService:GenericSerService<DeptDto>,private route: ActivatedRoute, private router : Router) { }
     ngOnInit(): void {
-        // console.log(this.route.snapshot.params["id"])
         this.route.params.subscribe(params => {
             this.id = params['id'];
             this.deptService.getById(+this.id).subscribe((d=>{console.log(d)

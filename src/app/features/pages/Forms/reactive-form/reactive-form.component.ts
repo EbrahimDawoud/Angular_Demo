@@ -17,7 +17,7 @@ export class ReactiveFormComponent {
       '', 
       [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]
     ],
-    password: ['']
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   onSubmit() {

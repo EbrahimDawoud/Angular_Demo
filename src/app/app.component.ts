@@ -10,6 +10,8 @@ import { PowerPipe } from './shared/pipes/power.pipe';
 import { HomeComponent } from './core/home/home.component';
 import { BASE_URL } from './core/auth/base-url.token';
 import { environment } from '../environments/environment.development';
+import { ReactiveFormComponent } from './features/pages/Forms/reactive-form/reactive-form.component';
+import { TmplateFormComponent } from './features/pages/Forms/tmplate-form/tmplate-form.component';
 
 
 @Component({
@@ -19,7 +21,7 @@ import { environment } from '../environments/environment.development';
     { provide: BASE_URL, useValue: environment.baseUrl } ,
 
   ],
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, StudentComponent, CommonModule, FormsModule, DepartmentComponent, PowerPipe ,HomeComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, StudentComponent, CommonModule, FormsModule, DepartmentComponent, PowerPipe ,HomeComponent, ReactiveFormComponent, TmplateFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
